@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Шифрування</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="h1">
+        <h1>ENIGMA</h1>
+    </div>
+    <br>
+    <div  class="main">
+        <div>
+            <div class="fl1">
+                <div class="div1">
+                    <div class="rotors">
+                        <div style="background-color: silver; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+                            <p>Left <br> Rotor</p>
+                            <div style="margin-left: 10px;">
+                                <textarea id="left" rows="1" cols="5" placeholder="write" maxlength="1" name="rot"></textarea>
+                                <br>
+                                <textarea id="left1" rows="1" cols="5" placeholder="get" readonly name="rot1"></textarea>
+                            </div>
+                        </div>
+                        <div style="background-color: silver; border: none;">
+                            <p>Middle <br> Rotor</p>
+                            <textarea id="middle" rows="1" cols="5" placeholder="rotors" maxlength="1" name="rot"></textarea>
+                            <br>
+                            <textarea id="middle1" rows="1" cols="5" placeholder="rotors" readonly name="rot1"></textarea>
+                        </div>
+                        <div style="background-color: silver; border: none;">
+                            <p>Rigth <br> Rotor</p>
+                            <div>
+                                <textarea id="rigth" rows="1" cols="5" placeholder="value" maxlength="1" name="rot"></textarea>
+                                <br>
+                                <textarea id="rigth1" rows="1" cols="5" placeholder="value" readonly name="rot1"></textarea>
+                            </div>
+                        </div>
+                        <div style="background-color: silver; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
+                            <p>Change <br> Rotors</p>
+                            <div style="margin-right: 10px;">
+                                <textarea id="change" rows="1" cols="5"  maxlength="1" name="rot"></textarea>
+                                <br>
+                                <textarea id="change1" rows="1" cols="5"  readonly name="rot1"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blink">
+                        <div><button type="button" id="red" class="blk" disabled></button></div>
+                        <div><button type="button" id="yellow" class="blk" disabled></button></div>
+                        <div><button type="button" id="blue" class="blk" disabled></button></div>
+                        <div><button type="button" id="green" class="blk" disabled></button></div>
+                    </div>
+                </div>
+                <div class="div6">
+                    <div class="radio">
+                        <div><input id="r5" type="radio" name="alph" checked></div>
+                        <div>
+                            <p style="text-align: left;">English <br> Only the letters of the alphabet</p>
+                        </div>
+                    </div>
+                    <div class="radio">
+                        <div><input id="r6" type="radio" name="alph"></div>
+                        <div>
+                            <p style="text-align: left;">English Extended <br> The letters of the alphabet, <br> numbers, symbols . , - ?</p>
+                        </div>
+                    </div>
+                    <div class="radio">
+                        <div><input id="r7" type="radio" name="alph"></div>
+                        <div>
+                            <p style="text-align: left;">Ukrainian Extended <br> The letters of the alphabet, <br> numbers, symbols . , - ?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="t1">
+                <textarea class="in" id="input" placeholder="Write text to encrypt" rows="10" cols="50" name="text"></textarea>
+                <div class="div2">
+                    <div><button type="button" id="encode" class="btn" onclick="runEnigma()"><p>Run Enigma</p></button></div>
+                    <div class="arr"><img src="arrow.png" height="50" width="70"></div>
+                </div>
+                <textarea class="out" id="output" placeholder="Get your result here" rows="10" cols="50" name="text"></textarea>
+            </div>
+        </div>
+        <div style="padding-left: 20px;">
+            <img src="enigma.jpg" height="500" width="400">
+        </div>
+    </div>
+
+    <script language="javascript" type="text/javascript">
+        var eng = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        var reflector1 = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
+        var rot1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
+        var rot2 = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
+        var rot3 = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
+
+        var engX = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,?-";
+        var reflector2 = "9W32,LPX0.1FNM-G6?U4SYBHV5IKDCTZQ87AJERO";
+        var rot4 = "0RYSU4WO7FP1DX.JG56LT?QI2ABZ-8MCK3VN,E9H";
+        var rot5 = "PSFO2I5RN0T1VMJ6CE-3WK,8H7ZQ4ALD.Y9BGUX?";
+        var rot6 = "N3ITY1UJG6HF9ED?0W8C2S7XL.M4QPVAB-KOR5Z,";
+
+        var ukrX = "АБВГДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ0123456789.,?-";
+        var reflector3 = "КТ5-ЩЗ3.Е8?0ЯАРХЬУЮЛ1БОЧМШФЦДНПЙЇС4Є2В76И,Ж9ІГ";
+        var rot7 = "Ь0ЩУЗ6ВІМ1БСЖ,9ЙФЯ3ЇЄА74ГК.О2ТЕ8ЦЧИДХ5НЮП-РШЛ?";
+        var rot8 = "ЙХФ2ДК7ГЕО9П-РА0ЧТМ5ЩЗИ?1ЯН3УЇ4БЛ8,ВІ.ЮСШЬЦЖЄ6";
+        var rot9 = "1ЦЗАО5ПТИН6МШГ8ЕЬ?СБ-Щ03УЙХЧ,Я2ЖЛР9.ІФДЇ7ЄВКЮ4";
+
+
+        function random(min, max){
+        	var r = min +Math.random()*(max+1-min);
+        	r = Math.floor(r);
+        	return r;
+        }
+
+        function runEnigma() {
+            var input = $("#input").val();
+            if (input == "") {
+                alert("Введіть Повідомлення");
+            }
+            input = input.toUpperCase();
+            var encodedText = new String();
+            var result = new String();
+            var inputs = $("textarea[name='rot']");
+            var rots = [];
+            for (var i = 0; i < 3; i++) {
+                rots += inputs[i].value;
+            }
+            if (rots == "" || rots.length>3) {
+                alert("Введіть значення ротора");
+                return false;
+            }
+            rots = rots.toUpperCase();
+            var rand = 1;
+            var rad = $("input[name='alph']");
+            var ch = $("#change").val();
+            if (rad[0].checked) {
+            	if (ch == "") {
+            		rand = random(1,6);
+            		switch (rand){
+            			case 1: 
+            			encodedText = enigma(reflector1, rot1, rot2, rot3, rots, input, eng);
+            			break;
+            			case 2: 
+            			encodedText = enigma(reflector1, rot1, rot3, rot2, rots, input, eng);
+            			break;
+            			case 3: 
+            			encodedText = enigma(reflector1, rot2, rot1, rot3, rots, input, eng);
+            			break;
+            			case 4: 
+            			encodedText = enigma(reflector1, rot2, rot3, rot1, rots, input, eng);
+            			break;
+            			case 5: 
+            			encodedText = enigma(reflector1, rot3, rot1, rot2, rots, input, eng);
+            			break;
+            			case 6: 
+            			encodedText = enigma(reflector1, rot3, rot2, rot1, rots, input, eng);
+            			break;
+            		}
+          		} else {
+          			switch (ch){
+            			case "1": 
+            			encodedText = enigma(reflector1, rot1, rot2, rot3, rots, input, eng);
+            			break;
+            			case "2": 
+            			encodedText = enigma(reflector1, rot1, rot3, rot2, rots, input, eng);
+            			break;
+            			case "3": 
+            			encodedText = enigma(reflector1, rot2, rot1, rot3, rots, input, eng);
+            			break;
+            			case "4": 
+            			encodedText = enigma(reflector1, rot2, rot3, rot1, rots, input, eng);
+            			break;
+            			case "5": 
+            			encodedText = enigma(reflector1, rot3, rot1, rot2, rots, input, eng);
+            			break;
+            			case "6": 
+            			encodedText = enigma(reflector1, rot3, rot2, rot1, rots, input, eng);
+            			break;
+            		}
+          		}
+            } else if (rad[1].checked) {
+                if (ch == "") {
+            		rand = random(1,6);
+            		switch (rand){
+            			case 1: 
+            			encodedText = enigma(reflector2, rot4, rot5, rot6, rots, input, engX);
+            			break;
+            			case 2: 
+            			encodedText = enigma(reflector2, rot4, rot6, rot5, rots, input, engX);
+            			break;
+            			case 3: 
+            			encodedText = enigma(reflector2, rot5, rot4, rot6, rots, input, engX);
+            			break;
+            			case 4: 
+            			encodedText = enigma(reflector2, rot5, rot6, rot4, rots, input, engX);
+            			break;
+            			case 5: 
+            			encodedText = enigma(reflector2, rot6, rot4, rot5, rots, input, engX);
+            			break;
+            			case 6: 
+            			encodedText = enigma(reflector2, rot6, rot5, rot4, rots, input, engX);
+            			break;
+            		}
+          		} else {
+          			switch (ch){
+            			case "1": 
+            			encodedText = enigma(reflector2, rot4, rot5, rot6, rots, input, engX);
+            			break;
+            			case "2": 
+            			encodedText = enigma(reflector2, rot4, rot6, rot5, rots, input, engX);
+            			break;
+            			case "3": 
+            			encodedText = enigma(reflector2, rot5, rot4, rot6, rots, input, engX);
+            			break;
+            			case "4": 
+            			encodedText = enigma(reflector2, rot5, rot6, rot4, rots, input, engX);
+            			break;
+            			case "5": 
+            			encodedText = enigma(reflector2, rot6, rot4, rot5, rots, input, engX);
+            			break;
+            			case "6": 
+            			encodedText = enigma(reflector2, rot6, rot5, rot4, rots, input, engX);
+            			break;
+            		}
+          		}
+            } else {
+                if (ch == "") {
+            		rand = random(1,6);
+            		switch (rand){
+            			case 1: 
+            			encodedText = enigma(reflector3, rot7, rot8, rot9, rots, input, ukrX);
+            			break;
+            			case 2: 
+            			encodedText = enigma(reflector3, rot7, rot9, rot8, rots, input, ukrX);
+            			break;
+            			case 3: 
+            			encodedText = enigma(reflector3, rot8, rot7, rot9, rots, input, ukrX);
+            			break;
+            			case 4: 
+            			encodedText = enigma(reflector3, rot8, rot9, rot7, rots, input, ukrX);
+            			break;
+            			case 5: 
+            			encodedText = enigma(reflector3, rot9, rot7, rot8, rots, input, ukrX);
+            			break;
+            			case 6: 
+            			encodedText = enigma(reflector3, rot9, rot8, rot7, rots, input, ukrX);
+            			break;
+            		}
+          		} else {
+          			switch (ch){
+            			case "1": 
+            			encodedText = enigma(reflector3, rot7, rot8, rot9, rots, input, ukrX);
+            			break;
+            			case "2": 
+            			encodedText = enigma(reflector3, rot7, rot9, rot8, rots, input, ukrX);
+            			break;
+            			case "3": 
+            			encodedText = enigma(reflector3, rot8, rot7, rot9, rots, input, ukrX);
+            			break;
+            			case "4": 
+            			encodedText = enigma(reflector3, rot8, rot9, rot7, rots, input, ukrX);
+            			break;
+            			case "5": 
+            			encodedText = enigma(reflector3, rot9, rot7, rot8, rots, input, ukrX);
+            			break;
+            			case "6": 
+            			encodedText = enigma(reflector3, rot9, rot8, rot7, rots, input, ukrX);
+            			break;
+            		}
+          		}
+            }
+            rots = encodedText.substring(encodedText.length - 3, encodedText.length);
+            $("#output1").text(rots);
+            $("#left1").text(rots[0]);
+            $("#middle1").text(rots[1]);
+            $("#rigth1").text(rots[2]);
+            result = encodedText.substring(0, encodedText.length - 3);
+            $("#change1").text(rand);
+            $("#output").text(result);
+        }
+    </script>
+</body>
+
+</html>

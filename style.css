@@ -1,0 +1,186 @@
+body {
+    background-color: black;
+    background-size: cover;
+}
+p {
+    color: black;
+    text-align: center;
+    font-family: "Comic Sans MS"
+}
+textarea {
+    resize: none;
+}
+h1 {
+	color: white;
+    font-family: "Comic Sans MS"
+}
+   .fl1 {
+        display: flex;
+        flex-direction: row;
+    }
+    .main {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .div1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1em;
+        background-color: none;
+        margin-left: 40px;
+
+    }
+    .div6 {
+        display: flex;
+        flex-direction: column;
+        padding: 1em;
+        border: 7px dashed;
+        background-color: rgba(204, 204, 204, 0.8);
+        margin-left: 200px;
+    }
+    .radio{
+        display: flex;
+        flex-direction: column;
+        margin-left: 15px;
+    }
+	.h1{
+		text-align: center;
+	}
+	.t1{
+		display: flex;
+		margin: 15px;
+	}
+	.out{
+		margin-left: 10px;
+	}
+    .rotors{
+        display: flex;
+        flex-direction: row;
+    }
+    .div2{
+        margin-left: 10px;
+        margin-top: 70px;
+        align-items: center;
+    }
+    .btn{
+        background-color: silver;
+        border-radius: 10px;    
+    }
+    .arr{
+        margin-left: 13px;
+    }
+button:hover{
+    background-color: white;
+}
+    .blink {
+        display: flex;
+        flex-direction: row;
+    }
+    .blk {
+        height: 20px;
+        width: 20px;
+        border-radius: 100%;
+        border: none;
+    }
+    #red {
+        margin-top: 10px;
+        margin-left: 25px;
+        background-color: red;
+        animation: rd 4s ease infinite;
+    }
+    #yellow {
+        margin-top: 10px;
+        margin-left: 40px;
+        background-color: rgb(255,255,0);
+        animation: ylw 4s ease infinite;
+    }
+    #blue {
+        margin-top: 10px;
+        margin-left: 40px;
+        background-color: blue;
+        animation: bl 4s ease infinite;
+    }
+    #green {
+        margin-top: 10px;
+        margin-left: 45px;
+        background-color: blue;
+        animation: gn 4s ease infinite;
+    }
+@keyframes rd {
+    0% {
+        background-color: red;
+    }
+    25% {
+        background-color: yellow;
+    }
+    50% {
+        background-color: blue;
+    }
+    75% {
+        background-color: green;
+    }
+    100% {
+        background-color: white;
+    }
+}
+@keyframes ylw {
+    0% {
+        background-color: yellow;
+    }
+    25% {
+        background-color: blue;
+    }
+    50% {
+        background-color: green;
+    }
+    75% {
+        background-color: white;
+    }
+    100% {
+        background-color: red;
+    }
+
+}
+@keyframes bl {
+    0% {
+        background-color: blue;
+    }
+    25% {
+        background-color: green;
+    }
+    50% {
+        background-color: white;
+    }
+    75% {
+        background-color: red;
+    }
+    100% {
+        background-color: yellow;
+    }
+
+}
+@keyframes gn {
+    0% {
+        background-color: green;
+    }
+    25% {
+        background-color: white;
+    }
+    50% {
+        background-color: red;
+    }
+    75% {
+        background-color: yellow;
+    }
+    100% {
+        background-color: blue;
+    }
+
+}
+@media all and (max-width: 300px) {
+    .main {
+        flex-direction: column;
+    }
+}
