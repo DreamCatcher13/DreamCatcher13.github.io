@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Шифрування</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="script.js"></script>
@@ -15,7 +16,7 @@
         <h1>ENIGMA</h1>
     </div>
     <br>
-    <div  class="main">
+    <div class="main">
         <div>
             <div class="fl1">
                 <div class="div1">
@@ -45,9 +46,9 @@
                         <div style="background-color: silver; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
                             <p>Change <br> Rotors</p>
                             <div style="margin-right: 10px;">
-                                <textarea id="change" rows="1" cols="5"  maxlength="1" name="rot"></textarea>
+                                <textarea id="change" rows="1" cols="5" maxlength="1" name="rot"></textarea>
                                 <br>
-                                <textarea id="change1" rows="1" cols="5"  readonly name="rot1"></textarea>
+                                <textarea id="change1" rows="1" cols="5" readonly name="rot1"></textarea>
                             </div>
                         </div>
                     </div>
@@ -114,10 +115,10 @@
         var rot9 = "1ЦЗАО5ПТИН6МШГ8ЕЬ?СБ-Щ03УЙХЧ,Я2ЖЛР9.ІФДЇ7ЄВКЮ4";
 
 
-        function random(min, max){
-        	var r = min +Math.random()*(max+1-min);
-        	r = Math.floor(r);
-        	return r;
+        function random(min, max) {
+            var r = min + Math.random() * (max + 1 - min);
+            r = Math.floor(r);
+            return r;
         }
 
         function runEnigma() {
@@ -133,7 +134,7 @@
             for (var i = 0; i < 3; i++) {
                 rots += inputs[i].value;
             }
-            if (rots == "" || rots.length>3) {
+            if (rots == "" || rots.length > 3) {
                 alert("Введіть значення ротора");
                 return false;
             }
@@ -142,140 +143,146 @@
             var rad = $("input[name='alph']");
             var ch = $("#change").val();
             if (rad[0].checked) {
-            	if (ch == "") {
-            		rand = random(1,6);
-            		switch (rand){
-            			case 1: 
-            			encodedText = enigma(reflector1, rot1, rot2, rot3, rots, input, eng);
-            			break;
-            			case 2: 
-            			encodedText = enigma(reflector1, rot1, rot3, rot2, rots, input, eng);
-            			break;
-            			case 3: 
-            			encodedText = enigma(reflector1, rot2, rot1, rot3, rots, input, eng);
-            			break;
-            			case 4: 
-            			encodedText = enigma(reflector1, rot2, rot3, rot1, rots, input, eng);
-            			break;
-            			case 5: 
-            			encodedText = enigma(reflector1, rot3, rot1, rot2, rots, input, eng);
-            			break;
-            			case 6: 
-            			encodedText = enigma(reflector1, rot3, rot2, rot1, rots, input, eng);
-            			break;
-            		}
-          		} else {
-          			switch (ch){
-            			case "1": 
-            			encodedText = enigma(reflector1, rot1, rot2, rot3, rots, input, eng);
-            			break;
-            			case "2": 
-            			encodedText = enigma(reflector1, rot1, rot3, rot2, rots, input, eng);
-            			break;
-            			case "3": 
-            			encodedText = enigma(reflector1, rot2, rot1, rot3, rots, input, eng);
-            			break;
-            			case "4": 
-            			encodedText = enigma(reflector1, rot2, rot3, rot1, rots, input, eng);
-            			break;
-            			case "5": 
-            			encodedText = enigma(reflector1, rot3, rot1, rot2, rots, input, eng);
-            			break;
-            			case "6": 
-            			encodedText = enigma(reflector1, rot3, rot2, rot1, rots, input, eng);
-            			break;
-            		}
-          		}
+                if (ch == "") {
+                    rand = random(1, 6);
+                    switch (rand) {
+                        case 1:
+                            encodedText = enigma(reflector1, rot1, rot2, rot3, rots, input, eng);
+                            break;
+                        case 2:
+                            encodedText = enigma(reflector1, rot1, rot3, rot2, rots, input, eng);
+                            break;
+                        case 3:
+                            encodedText = enigma(reflector1, rot2, rot1, rot3, rots, input, eng);
+                            break;
+                        case 4:
+                            encodedText = enigma(reflector1, rot2, rot3, rot1, rots, input, eng);
+                            break;
+                        case 5:
+                            encodedText = enigma(reflector1, rot3, rot1, rot2, rots, input, eng);
+                            break;
+                        case 6:
+                            encodedText = enigma(reflector1, rot3, rot2, rot1, rots, input, eng);
+                            break;
+                    }
+                    $("#change1").text(rand);
+                } else {
+                    switch (ch) {
+                        case "1":
+                            encodedText = enigma(reflector1, rot1, rot2, rot3, rots, input, eng);
+                            break;
+                        case "2":
+                            encodedText = enigma(reflector1, rot1, rot3, rot2, rots, input, eng);
+                            break;
+                        case "3":
+                            encodedText = enigma(reflector1, rot2, rot1, rot3, rots, input, eng);
+                            break;
+                        case "4":
+                            encodedText = enigma(reflector1, rot2, rot3, rot1, rots, input, eng);
+                            break;
+                        case "5":
+                            encodedText = enigma(reflector1, rot3, rot1, rot2, rots, input, eng);
+                            break;
+                        case "6":
+                            encodedText = enigma(reflector1, rot3, rot2, rot1, rots, input, eng);
+                            break;
+                    }
+                    $("#change1").text(ch);
+                }
             } else if (rad[1].checked) {
                 if (ch == "") {
-            		rand = random(1,6);
-            		switch (rand){
-            			case 1: 
-            			encodedText = enigma(reflector2, rot4, rot5, rot6, rots, input, engX);
-            			break;
-            			case 2: 
-            			encodedText = enigma(reflector2, rot4, rot6, rot5, rots, input, engX);
-            			break;
-            			case 3: 
-            			encodedText = enigma(reflector2, rot5, rot4, rot6, rots, input, engX);
-            			break;
-            			case 4: 
-            			encodedText = enigma(reflector2, rot5, rot6, rot4, rots, input, engX);
-            			break;
-            			case 5: 
-            			encodedText = enigma(reflector2, rot6, rot4, rot5, rots, input, engX);
-            			break;
-            			case 6: 
-            			encodedText = enigma(reflector2, rot6, rot5, rot4, rots, input, engX);
-            			break;
-            		}
-          		} else {
-          			switch (ch){
-            			case "1": 
-            			encodedText = enigma(reflector2, rot4, rot5, rot6, rots, input, engX);
-            			break;
-            			case "2": 
-            			encodedText = enigma(reflector2, rot4, rot6, rot5, rots, input, engX);
-            			break;
-            			case "3": 
-            			encodedText = enigma(reflector2, rot5, rot4, rot6, rots, input, engX);
-            			break;
-            			case "4": 
-            			encodedText = enigma(reflector2, rot5, rot6, rot4, rots, input, engX);
-            			break;
-            			case "5": 
-            			encodedText = enigma(reflector2, rot6, rot4, rot5, rots, input, engX);
-            			break;
-            			case "6": 
-            			encodedText = enigma(reflector2, rot6, rot5, rot4, rots, input, engX);
-            			break;
-            		}
-          		}
+                    rand = random(1, 6);
+                    switch (rand) {
+                        case 1:
+                            encodedText = enigma(reflector2, rot4, rot5, rot6, rots, input, engX);
+                            break;
+                        case 2:
+                            encodedText = enigma(reflector2, rot4, rot6, rot5, rots, input, engX);
+                            break;
+                        case 3:
+                            encodedText = enigma(reflector2, rot5, rot4, rot6, rots, input, engX);
+                            break;
+                        case 4:
+                            encodedText = enigma(reflector2, rot5, rot6, rot4, rots, input, engX);
+                            break;
+                        case 5:
+                            encodedText = enigma(reflector2, rot6, rot4, rot5, rots, input, engX);
+                            break;
+                        case 6:
+                            encodedText = enigma(reflector2, rot6, rot5, rot4, rots, input, engX);
+                            break;
+                    }
+                    $("#change1").text(rand);
+                } else {
+                    switch (ch) {
+                        case "1":
+                            encodedText = enigma(reflector2, rot4, rot5, rot6, rots, input, engX);
+                            break;
+                        case "2":
+                            encodedText = enigma(reflector2, rot4, rot6, rot5, rots, input, engX);
+                            break;
+                        case "3":
+                            encodedText = enigma(reflector2, rot5, rot4, rot6, rots, input, engX);
+                            break;
+                        case "4":
+                            encodedText = enigma(reflector2, rot5, rot6, rot4, rots, input, engX);
+                            break;
+                        case "5":
+                            encodedText = enigma(reflector2, rot6, rot4, rot5, rots, input, engX);
+                            break;
+                        case "6":
+                            encodedText = enigma(reflector2, rot6, rot5, rot4, rots, input, engX);
+                            break;
+                    }
+                    $("#change1").text(ch);
+                }
             } else {
                 if (ch == "") {
-            		rand = random(1,6);
-            		switch (rand){
-            			case 1: 
-            			encodedText = enigma(reflector3, rot7, rot8, rot9, rots, input, ukrX);
-            			break;
-            			case 2: 
-            			encodedText = enigma(reflector3, rot7, rot9, rot8, rots, input, ukrX);
-            			break;
-            			case 3: 
-            			encodedText = enigma(reflector3, rot8, rot7, rot9, rots, input, ukrX);
-            			break;
-            			case 4: 
-            			encodedText = enigma(reflector3, rot8, rot9, rot7, rots, input, ukrX);
-            			break;
-            			case 5: 
-            			encodedText = enigma(reflector3, rot9, rot7, rot8, rots, input, ukrX);
-            			break;
-            			case 6: 
-            			encodedText = enigma(reflector3, rot9, rot8, rot7, rots, input, ukrX);
-            			break;
-            		}
-          		} else {
-          			switch (ch){
-            			case "1": 
-            			encodedText = enigma(reflector3, rot7, rot8, rot9, rots, input, ukrX);
-            			break;
-            			case "2": 
-            			encodedText = enigma(reflector3, rot7, rot9, rot8, rots, input, ukrX);
-            			break;
-            			case "3": 
-            			encodedText = enigma(reflector3, rot8, rot7, rot9, rots, input, ukrX);
-            			break;
-            			case "4": 
-            			encodedText = enigma(reflector3, rot8, rot9, rot7, rots, input, ukrX);
-            			break;
-            			case "5": 
-            			encodedText = enigma(reflector3, rot9, rot7, rot8, rots, input, ukrX);
-            			break;
-            			case "6": 
-            			encodedText = enigma(reflector3, rot9, rot8, rot7, rots, input, ukrX);
-            			break;
-            		}
-          		}
+                    rand = random(1, 6);
+                    switch (rand) {
+                        case 1:
+                            encodedText = enigma(reflector3, rot7, rot8, rot9, rots, input, ukrX);
+                            break;
+                        case 2:
+                            encodedText = enigma(reflector3, rot7, rot9, rot8, rots, input, ukrX);
+                            break;
+                        case 3:
+                            encodedText = enigma(reflector3, rot8, rot7, rot9, rots, input, ukrX);
+                            break;
+                        case 4:
+                            encodedText = enigma(reflector3, rot8, rot9, rot7, rots, input, ukrX);
+                            break;
+                        case 5:
+                            encodedText = enigma(reflector3, rot9, rot7, rot8, rots, input, ukrX);
+                            break;
+                        case 6:
+                            encodedText = enigma(reflector3, rot9, rot8, rot7, rots, input, ukrX);
+                            break;
+                    }
+                    $("#change1").text(rand);
+                } else {
+                    switch (ch) {
+                        case "1":
+                            encodedText = enigma(reflector3, rot7, rot8, rot9, rots, input, ukrX);
+                            break;
+                        case "2":
+                            encodedText = enigma(reflector3, rot7, rot9, rot8, rots, input, ukrX);
+                            break;
+                        case "3":
+                            encodedText = enigma(reflector3, rot8, rot7, rot9, rots, input, ukrX);
+                            break;
+                        case "4":
+                            encodedText = enigma(reflector3, rot8, rot9, rot7, rots, input, ukrX);
+                            break;
+                        case "5":
+                            encodedText = enigma(reflector3, rot9, rot7, rot8, rots, input, ukrX);
+                            break;
+                        case "6":
+                            encodedText = enigma(reflector3, rot9, rot8, rot7, rots, input, ukrX);
+                            break;
+                    }
+                    $("#change1").text(rand);
+                }
             }
             rots = encodedText.substring(encodedText.length - 3, encodedText.length);
             $("#output1").text(rots);
@@ -283,7 +290,6 @@
             $("#middle1").text(rots[1]);
             $("#rigth1").text(rots[2]);
             result = encodedText.substring(0, encodedText.length - 3);
-            $("#change1").text(rand);
             $("#output").text(result);
         }
     </script>
