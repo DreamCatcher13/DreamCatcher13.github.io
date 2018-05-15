@@ -90,8 +90,79 @@
                 <textarea class="out" id="output" placeholder="Get your result here" rows="10" cols="50" name="text"></textarea>
             </div>
         </div>
-        <div style="padding-left: 20px;">
-            <img src="enigma.jpg" height="500" width="400">
+        <div class="panel">
+            <div style="display: flex; flex-direction: row">
+            	<div>
+            		<div class="radio"><input type="radio" name="panel"><div><p>English</p></div></div>
+            		<div>
+            			<textarea id="t1" rows="1" cols="5" placeholder="A..Z" maxlength="1" name="p1"></textarea>
+            			<textarea id="t2" rows="1" cols="5" placeholder="A..Z" maxlength="1" name="p1"></textarea>
+            			<br>
+            			<textarea id="t3" rows="1" cols="5" placeholder="A..Z" maxlength="1" name="p1"></textarea>
+            			<textarea id="t4" rows="1" cols="5" placeholder="A..Z" maxlength="1" name="p1"></textarea>
+            			<br>
+            			<textarea id="t5" rows="1" cols="5" placeholder="A..Z" maxlength="1" name="p1"></textarea>
+            			<textarea id="t6" rows="1" cols="5" placeholder="A..Z" maxlength="1" name="p1"></textarea>
+            			<br>
+            			<textarea id="t7" rows="1" cols="5" placeholder="A..Z" maxlength="1" name="p1"></textarea>
+            			<textarea id="t8" rows="1" cols="5" placeholder="A..Z" maxlength="1" name="p1"></textarea>
+            			<br>
+            			<textarea id="t9" rows="1" cols="5" placeholder="A..Z" maxlength="1" name="p1"></textarea>
+            			<textarea id="t10" rows="1" cols="5" placeholder="A..Z" maxlength="1" name="p1"></textarea>
+            			<br>
+            			<textarea id="t11" rows="1" cols="5" placeholder="A..Z" maxlength="1" name="p1"></textarea>
+            			<textarea id="t12" rows="1" cols="5" placeholder="A..Z" maxlength="1" name="p1"></textarea>
+            			<br>
+            		</div>
+            	</div>
+            	<div style="padding-left: 20px;">
+            		<div class="radio"><input type="radio" name="panel"><div><p>English Extended</p></div></div>
+            		<div>
+            			<textarea id="r1" rows="1" cols="5" placeholder="A..Z 0..9" maxlength="1" name="p2"></textarea>
+            			<textarea id="r2" rows="1" cols="5" placeholder="A..Z 0..9" maxlength="1" name="p2"></textarea>
+            			<br>
+            			<textarea id="r3" rows="1" cols="5" placeholder="A..Z 0..9" maxlength="1" name="p2"></textarea>
+            			<textarea id="r4" rows="1" cols="5" placeholder="A..Z 0..9" maxlength="1" name="p2"></textarea>
+            			<br>
+            			<textarea id="r5" rows="1" cols="5" placeholder="A..Z 0..9" maxlength="1" name="p2"></textarea>
+            			<textarea id="r6" rows="1" cols="5" placeholder="A..Z 0..9" maxlength="1" name="p2"></textarea>
+            			<br>
+            			<textarea id="r7" rows="1" cols="5" placeholder="A..Z 0..9" maxlength="1" name="p2"></textarea>
+            			<textarea id="r8" rows="1" cols="5" placeholder="A..Z 0..9" maxlength="1" name="p2"></textarea>
+            			<br>
+            			<textarea id="r9" rows="1" cols="5" placeholder="A..Z 0..9" maxlength="1" name="p2"></textarea>
+            			<textarea id="r10" rows="1" cols="5" placeholder="A..Z 0..9" maxlength="1" name="p2"></textarea>
+            			<br>
+            			<textarea id="r11" rows="1" cols="5" placeholder="A..Z 0..9" maxlength="1" name="p2"></textarea>
+            			<textarea id="r12" rows="1" cols="5" placeholder="A..Z 0..9" maxlength="1" name="p2"></textarea>
+            			<br>
+            	</div>
+            </div>
+        </div>
+            <div>
+            	<div class="radio"><input type="radio" name="panel"><div><p>Ukrainian Extended</p></div></div>
+            		<div>
+            			<textarea id="s1" rows="1" cols="5" placeholder="А..Я 0..9" maxlength="1" name="p3"></textarea>
+            			<textarea id="s2" rows="1" cols="5" placeholder="А..Я 0..9" maxlength="1" name="p3"></textarea>
+            			<br>
+            			<textarea id="s3" rows="1" cols="5" placeholder="А..Я 0..9" maxlength="1" name="p3"></textarea>
+            			<textarea id="s4" rows="1" cols="5" placeholder="А..Я 0..9" maxlength="1" name="p3"></textarea>
+            			<br>
+            			<textarea id="s5" rows="1" cols="5" placeholder="А..Я 0..9" maxlength="1" name="p3"></textarea>
+            			<textarea id="s6" rows="1" cols="5" placeholder="А..Я 0..9" maxlength="1" name="p3"></textarea>
+            			<br>
+            			<textarea id="s7" rows="1" cols="5" placeholder="А..Я 0..9" maxlength="1" name="p3"></textarea>
+            			<textarea id="s8" rows="1" cols="5" placeholder="А..Я 0..9" maxlength="1" name="p3"></textarea>
+            			<br>
+            			<textarea id="s9" rows="1" cols="5" placeholder="А..Я 0..9" maxlength="1" name="p3"></textarea>
+            			<textarea id="s10" rows="1" cols="5" placeholder="А..Я 0..9" maxlength="1" name="p3"></textarea>
+            			<br>
+            			<textarea id="s11" rows="1" cols="5" placeholder="А..Я 0..9" maxlength="1" name="p3"></textarea>
+            			<textarea id="s12" rows="1" cols="5" placeholder="А..Я 0..9" maxlength="1" name="p3"></textarea>
+            			<br>
+            			<br>
+            	</div>
+            </div>
         </div>
     </div>
 
@@ -141,148 +212,191 @@
             rots = rots.toUpperCase();
             var rand = 1;
             var rad = $("input[name='alph']");
+            var pnl = $("input[name='panel']");
+            var panel = new String();
             var ch = $("#change").val();
-            if (rad[0].checked) {
+            if (rad[0].checked && pnl[0].checked) {
+            	var  contacts = $("textarea[name='p1']");
+            	for (var i = 0; i<12; ){
+            		if (contacts[i].value == ""){
+            			i+=2;
+            		} else if (contacts[i+1].value == ""){
+            			i+=2;
+            		} else {
+            			panel+=contacts[i].value;
+            			panel+=contacts[i+1].value;
+            			i+=2;
+            		}
+            	}
+            	panel = panel.toUpperCase();
                 if (ch == "") {
                     rand = random(1, 6);
                     switch (rand) {
                         case 1:
-                            encodedText = enigma(reflector1, rot1, rot2, rot3, rots, input, eng);
+                            encodedText = enigma(reflector1, rot1, rot2, rot3, rots, input, panel, eng);
                             break;
                         case 2:
-                            encodedText = enigma(reflector1, rot1, rot3, rot2, rots, input, eng);
+                            encodedText = enigma(reflector1, rot1, rot3, rot2, rots, input, panel, eng);
                             break;
                         case 3:
-                            encodedText = enigma(reflector1, rot2, rot1, rot3, rots, input, eng);
+                            encodedText = enigma(reflector1, rot2, rot1, rot3, rots, input, panel, eng);
                             break;
                         case 4:
-                            encodedText = enigma(reflector1, rot2, rot3, rot1, rots, input, eng);
+                            encodedText = enigma(reflector1, rot2, rot3, rot1, rots, input, panel, eng);
                             break;
                         case 5:
-                            encodedText = enigma(reflector1, rot3, rot1, rot2, rots, input, eng);
+                            encodedText = enigma(reflector1, rot3, rot1, rot2, rots, input, panel, eng);
                             break;
                         case 6:
-                            encodedText = enigma(reflector1, rot3, rot2, rot1, rots, input, eng);
+                            encodedText = enigma(reflector1, rot3, rot2, rot1, rots, input, panel, eng);
                             break;
                     }
                     $("#change1").text(rand);
                 } else {
                     switch (ch) {
                         case "1":
-                            encodedText = enigma(reflector1, rot1, rot2, rot3, rots, input, eng);
+                            encodedText = enigma(reflector1, rot1, rot2, rot3, rots, input, panel, eng);
                             break;
                         case "2":
-                            encodedText = enigma(reflector1, rot1, rot3, rot2, rots, input, eng);
+                            encodedText = enigma(reflector1, rot1, rot3, rot2, rots, input, panel, eng);
                             break;
                         case "3":
-                            encodedText = enigma(reflector1, rot2, rot1, rot3, rots, input, eng);
+                            encodedText = enigma(reflector1, rot2, rot1, rot3, rots, input, panel, eng);
                             break;
                         case "4":
-                            encodedText = enigma(reflector1, rot2, rot3, rot1, rots, input, eng);
+                            encodedText = enigma(reflector1, rot2, rot3, rot1, rots, input, panel, eng);
                             break;
                         case "5":
-                            encodedText = enigma(reflector1, rot3, rot1, rot2, rots, input, eng);
+                            encodedText = enigma(reflector1, rot3, rot1, rot2, rots, input, panel, eng);
                             break;
                         case "6":
-                            encodedText = enigma(reflector1, rot3, rot2, rot1, rots, input, eng);
+                            encodedText = enigma(reflector1, rot3, rot2, rot1, rots, input, panel, eng);
                             break;
                     }
                     $("#change1").text(ch);
                 }
-            } else if (rad[1].checked) {
+            } else if (rad[1].checked && pnl[1].checked) {
+            	var  contacts = $("textarea[name='p2']");
+            	for (var i = 0; i<12; ){
+            		if (contacts[i].value == ""){
+            			i+=2;
+            		} else if (contacts[i+1].value == ""){
+            			i+=2;
+            		} else {
+            			panel+=contacts[i].value;
+            			panel+=contacts[i+1].value;
+            			i+=2;
+            		}
+            	}
+            	panel = panel.toUpperCase();
                 if (ch == "") {
                     rand = random(1, 6);
                     switch (rand) {
                         case 1:
-                            encodedText = enigma(reflector2, rot4, rot5, rot6, rots, input, engX);
+                            encodedText = enigma(reflector2, rot4, rot5, rot6, rots, input, panel, engX);
                             break;
                         case 2:
-                            encodedText = enigma(reflector2, rot4, rot6, rot5, rots, input, engX);
+                            encodedText = enigma(reflector2, rot4, rot6, rot5, rots, input, panel, engX);
                             break;
                         case 3:
-                            encodedText = enigma(reflector2, rot5, rot4, rot6, rots, input, engX);
+                            encodedText = enigma(reflector2, rot5, rot4, rot6, rots, input, panel, engX);
                             break;
                         case 4:
-                            encodedText = enigma(reflector2, rot5, rot6, rot4, rots, input, engX);
+                            encodedText = enigma(reflector2, rot5, rot6, rot4, rots, input, panel, engX);
                             break;
                         case 5:
-                            encodedText = enigma(reflector2, rot6, rot4, rot5, rots, input, engX);
+                            encodedText = enigma(reflector2, rot6, rot4, rot5, rots, input, panel, engX);
                             break;
                         case 6:
-                            encodedText = enigma(reflector2, rot6, rot5, rot4, rots, input, engX);
+                            encodedText = enigma(reflector2, rot6, rot5, rot4, rots, input, panel, engX);
                             break;
                     }
                     $("#change1").text(rand);
                 } else {
                     switch (ch) {
                         case "1":
-                            encodedText = enigma(reflector2, rot4, rot5, rot6, rots, input, engX);
+                            encodedText = enigma(reflector2, rot4, rot5, rot6, rots, input, panel, engX);
                             break;
                         case "2":
-                            encodedText = enigma(reflector2, rot4, rot6, rot5, rots, input, engX);
+                            encodedText = enigma(reflector2, rot4, rot6, rot5, rots, input, panel, engX);
                             break;
                         case "3":
-                            encodedText = enigma(reflector2, rot5, rot4, rot6, rots, input, engX);
+                            encodedText = enigma(reflector2, rot5, rot4, rot6, rots, input, panel, engX);
                             break;
                         case "4":
-                            encodedText = enigma(reflector2, rot5, rot6, rot4, rots, input, engX);
+                            encodedText = enigma(reflector2, rot5, rot6, rot4, rots, input, panel, engX);
                             break;
                         case "5":
-                            encodedText = enigma(reflector2, rot6, rot4, rot5, rots, input, engX);
+                            encodedText = enigma(reflector2, rot6, rot4, rot5, rots, input, panel, engX);
                             break;
                         case "6":
-                            encodedText = enigma(reflector2, rot6, rot5, rot4, rots, input, engX);
+                            encodedText = enigma(reflector2, rot6, rot5, rot4, rots, input, panel, engX);
+                            break;
+                    }
+                    $("#change1").text(ch);
+                }
+            } else if (rad[2].checked && pnl[2].checked){
+            	var  contacts = $("textarea[name='p3']");
+            	for (var i = 0; i<12; ){
+            		if (contacts[i].value == ""){
+            			i+=2;
+            		} else if (contacts[i+1].value == ""){
+            			i+=2;
+            		} else {
+            			panel+=contacts[i].value;
+            			panel+=contacts[i+1].value;
+            			i+=2;
+            		}
+            	}
+            	panel = panel.toUpperCase();
+                if (ch == "") {
+                    rand = random(1, 6);
+                    switch (rand) {
+                        case 1:
+                            encodedText = enigma(reflector3, rot7, rot8, rot9, rots, input, panel, ukrX);
+                            break;
+                        case 2:
+                            encodedText = enigma(reflector3, rot7, rot9, rot8, rots, input, panel, ukrX);
+                            break;
+                        case 3:
+                            encodedText = enigma(reflector3, rot8, rot7, rot9, rots, input, panel, ukrX);
+                            break;
+                        case 4:
+                            encodedText = enigma(reflector3, rot8, rot9, rot7, rots, input, panel, ukrX);
+                            break;
+                        case 5:
+                            encodedText = enigma(reflector3, rot9, rot7, rot8, rots, input, panel, ukrX);
+                            break;
+                        case 6:
+                            encodedText = enigma(reflector3, rot9, rot8, rot7, rots, input, panel, ukrX);
+                            break;
+                    }
+                    $("#change1").text(rand);
+                } else {
+                    switch (ch) {
+                        case "1":
+                            encodedText = enigma(reflector3, rot7, rot8, rot9, rots, input, panel, ukrX);
+                            break;
+                        case "2":
+                            encodedText = enigma(reflector3, rot7, rot9, rot8, rots, input, panel, ukrX);
+                            break;
+                        case "3":
+                            encodedText = enigma(reflector3, rot8, rot7, rot9, rots, input, panel, ukrX);
+                            break;
+                        case "4":
+                            encodedText = enigma(reflector3, rot8, rot9, rot7, rots, input, panel, ukrX);
+                            break;
+                        case "5":
+                            encodedText = enigma(reflector3, rot9, rot7, rot8, rots, input, panel, ukrX);
+                            break;
+                        case "6":
+                            encodedText = enigma(reflector3, rot9, rot8, rot7, rots, input, panel, ukrX);
                             break;
                     }
                     $("#change1").text(ch);
                 }
             } else {
-                if (ch == "") {
-                    rand = random(1, 6);
-                    switch (rand) {
-                        case 1:
-                            encodedText = enigma(reflector3, rot7, rot8, rot9, rots, input, ukrX);
-                            break;
-                        case 2:
-                            encodedText = enigma(reflector3, rot7, rot9, rot8, rots, input, ukrX);
-                            break;
-                        case 3:
-                            encodedText = enigma(reflector3, rot8, rot7, rot9, rots, input, ukrX);
-                            break;
-                        case 4:
-                            encodedText = enigma(reflector3, rot8, rot9, rot7, rots, input, ukrX);
-                            break;
-                        case 5:
-                            encodedText = enigma(reflector3, rot9, rot7, rot8, rots, input, ukrX);
-                            break;
-                        case 6:
-                            encodedText = enigma(reflector3, rot9, rot8, rot7, rots, input, ukrX);
-                            break;
-                    }
-                    $("#change1").text(rand);
-                } else {
-                    switch (ch) {
-                        case "1":
-                            encodedText = enigma(reflector3, rot7, rot8, rot9, rots, input, ukrX);
-                            break;
-                        case "2":
-                            encodedText = enigma(reflector3, rot7, rot9, rot8, rots, input, ukrX);
-                            break;
-                        case "3":
-                            encodedText = enigma(reflector3, rot8, rot7, rot9, rots, input, ukrX);
-                            break;
-                        case "4":
-                            encodedText = enigma(reflector3, rot8, rot9, rot7, rots, input, ukrX);
-                            break;
-                        case "5":
-                            encodedText = enigma(reflector3, rot9, rot7, rot8, rots, input, ukrX);
-                            break;
-                        case "6":
-                            encodedText = enigma(reflector3, rot9, rot8, rot7, rots, input, ukrX);
-                            break;
-                    }
-                    $("#change1").text(ch);
-                }
+            	return false;
             }
             rots = encodedText.substring(encodedText.length - 3, encodedText.length);
             $("#output1").text(rots);
